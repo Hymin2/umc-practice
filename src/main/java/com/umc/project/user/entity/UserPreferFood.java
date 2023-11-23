@@ -28,4 +28,8 @@ public class UserPreferFood {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prefer_food_id")
     private PreferFood preferFood;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/feature/domain-design
