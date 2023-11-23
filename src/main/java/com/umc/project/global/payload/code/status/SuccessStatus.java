@@ -1,7 +1,6 @@
 package com.umc.project.global.payload.code.status;
 
 import com.umc.project.global.payload.code.BaseCode;
-import com.umc.project.global.payload.code.dto.ErrorReasonDTO;
 import com.umc.project.global.payload.code.dto.ReasonDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
