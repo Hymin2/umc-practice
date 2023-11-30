@@ -12,4 +12,5 @@ import org.springframework.context.annotation.Configuration;
                 description = "UMC Server WorkBook API 명세서",
                 version = "v1"))
 public class SwaggerConfig {
+
 }

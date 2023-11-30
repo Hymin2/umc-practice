@@ -37,7 +37,4 @@ public class Address {
 
     @OneToMany(mappedBy = "address")
     private List<Restaurant> restaurants;
-
-    @OneToMany(mappedBy = "address")
-    private List<Mission> missions;
 }
