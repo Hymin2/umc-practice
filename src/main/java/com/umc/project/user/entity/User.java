@@ -1,8 +1,8 @@
 package com.umc.project.user.entity;
 
 import com.umc.project.mission.entity.UserMission;
-import com.umc.project.restaurant.entity.Comment;
-import com.umc.project.restaurant.entity.Review;
+import com.umc.project.review.entity.Comment;
+import com.umc.project.review.entity.Review;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
