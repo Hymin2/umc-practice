@@ -1,4 +1,4 @@
-package com.umc.project.restaurant.entity;
+package com.umc.project.review.entity;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

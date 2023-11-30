@@ -1,4 +1,4 @@
-package com.umc.project.restaurant.entity;
+package com.umc.project.review.entity;
 
 import com.umc.project.user.entity.User;
 import jakarta.persistence.Column;
@@ -9,12 +9,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.util.Date;
-import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -22,38 +20,32 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 @Entity
-@Table(name = "review_table")
+@Table(name = "comment_table")
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Review {
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "content")
-    private String content;
-
-    @Column(name = "star_point")
-    private Double startPoint;
+    @Column(name = "comment")
+    private String comment;
 
     @Column(name = "created_time")
-    @CreatedDate
     @Temporal(value = TemporalType.TIMESTAMP)
+    @CreatedDate
     private Date createdTime;
 
     @Column(name = "updated_time")
-    @LastModifiedDate
     @Temporal(value = TemporalType.TIMESTAMP)
+    @LastModifiedDate
     private Date updatedTime;
-
-    @OneToMany(mappedBy = "review")
-    private List<ReviewImage> reviewImages;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "restaurant_id")
-    private Restaurant restaurant;
+    @JoinColumn(name = "review_id")
+    private Review review;
 }
