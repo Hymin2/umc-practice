@@ -1,5 +1,6 @@
 package com.umc.project.restaurant.entity;
 
+import com.umc.project.review.entity.Review;
 import com.umc.project.user.entity.Address;
 import com.umc.project.user.entity.User;
 import jakarta.persistence.Column;
