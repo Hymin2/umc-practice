@@ -15,13 +15,14 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.util.Date;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 
 @Entity
 @Table(name = "user_mission_table")
+@Builder
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserMission {
@@ -57,4 +58,12 @@ public class UserMission {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mission_id")
     private Mission mission;
+
+    public void setUser(User user){
+        this.user = user;
+    }
+
+    public void setMission(Mission mission){
+        this.mission = mission;
+    }
 }
