@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class MissionService {
     private final UserService userService;
+    private final RestaurantService restaurantService;
     private final MissionRepository missionRepository;
     private final UserMissionRepository userMissionRepository;
 
@@ -33,6 +34,15 @@ public class MissionService {
         userMission.setMission(mission);
 
         return MissionMapper.toUserMissionCreateDTO(userMission);
+    }
+
+    public MissionResponseDTO.MissionCreateDTO createMission(MissionRequestDTO.MissionCreateDTO missionCreateDTO){
+        Mission mission = MissionMapper.toMission(missionCreateDTO);
+
+        Restaurant restaurant = restaurantService.findById(missionCreateDTO.getRestaurantId());
+        mission.setRestaurant(restaurant);
+
+        return MissionMapper.toMissionCreateDTO(mission);
     }
 
     public Mission findById(Long id){

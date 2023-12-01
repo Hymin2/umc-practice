@@ -13,4 +13,12 @@ public class MissionResponseDTO {
     public static class UserMissionCreateDTO {
         private Long id;
     }
+
+    @Getter
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class MissionCreateDTO {
+        private Long id;
+    }
 }
