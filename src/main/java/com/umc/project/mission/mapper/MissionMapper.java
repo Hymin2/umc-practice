@@ -18,11 +18,23 @@ public class MissionMapper {
                 .build();
     }
 
-
+    public static Mission toMission(MissionRequestDTO.MissionCreateDTO missionCreateDTO){
+        return Mission.builder()
+                .name(missionCreateDTO.getName())
+                .content(missionCreateDTO.getContent())
+                .point(missionCreateDTO.getPoint())
+                .build();
+    }
 
     public static MissionResponseDTO.UserMissionCreateDTO toUserMissionCreateDTO(UserMission userMission){
         return MissionResponseDTO.UserMissionCreateDTO.builder()
                 .id(userMission.getId())
+                .build();
+    }
+
+    public static MissionResponseDTO.MissionCreateDTO toMissionCreateDTO(Mission mission){
+        return MissionResponseDTO.MissionCreateDTO.builder()
+                .id(mission.getId())
                 .build();
     }
 }
