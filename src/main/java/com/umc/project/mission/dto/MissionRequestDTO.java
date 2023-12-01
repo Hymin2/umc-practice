@@ -23,5 +23,18 @@ public class MissionRequestDTO {
         private Long missionId;
     }
 
-
+    @Getter
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class MissionCreateDTO {
+        @ExistRestaurant
+        private Long restaurantId;
+        @NotNull
+        private String name;
+        @NotNull
+        private String content;
+        @NotNull
+        private Integer point;
+    }
 }
