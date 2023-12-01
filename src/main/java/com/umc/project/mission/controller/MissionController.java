@@ -22,5 +22,8 @@ public class MissionController {
         return ApiResponse.onSuccess(missionService.createUserMission(userMissionCreateDTO));
     }
 
-
+    @PostMapping("/restaurant")
+    public ApiResponse<MissionResponseDTO.MissionCreateDTO> createMission(@RequestBody @Valid MissionRequestDTO.MissionCreateDTO missionCreateDTO){
+        return ApiResponse.onSuccess(missionService.createMission(missionCreateDTO));
+    }
 }
