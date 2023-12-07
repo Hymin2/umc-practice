@@ -5,6 +5,7 @@ import com.umc.project.global.payload.ApiResponse;
 import com.umc.project.global.payload.code.dto.ErrorReasonDTO;
 import com.umc.project.global.payload.code.status.ErrorStatus;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.ConstraintViolationException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -52,9 +53,20 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(value = GeneralException.class)
-    public ResponseEntity onThrowException(GeneralException generalException, HttpServletRequest request) {
+    public ResponseEntity<Object> onThrowException(GeneralException generalException, HttpServletRequest request) {
         ErrorReasonDTO errorReasonHttpStatus = generalException.getErrorReasonHttpStatus();
+
         return handleExceptionInternal(generalException,errorReasonHttpStatus,null,request);
+    }
+
+    @ExceptionHandler(value = ConstraintViolationException.class)
+    public ResponseEntity onException(ConstraintViolationException e, HttpServletRequest request) {
+        return handleExceptionInternalConstraint(
+                e,
+                ErrorStatus.valueOf("_BAD_REQUEST"),
+                HttpHeaders.EMPTY,
+                new ServletWebRequest(request)
+        );
     }
 
     private ResponseEntity<Object> handleExceptionInternal(Exception e, ErrorReasonDTO reason,
@@ -97,9 +109,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         );
     }
 
-    private ResponseEntity<Object> handleExceptionInternalConstraint(Exception e, ErrorStatus errorCommonStatus,
+    private ResponseEntity<Object> handleExceptionInternalConstraint(ConstraintViolationException e, ErrorStatus errorCommonStatus,
                                                                      HttpHeaders headers, WebRequest request) {
-        ApiResponse<Object> body = ApiResponse.onFailure(errorCommonStatus.getCode(), errorCommonStatus.getMessage(), null);
+        ApiResponse<Object> body = ApiResponse.onFailure(errorCommonStatus.getCode(), errorCommonStatus.getMessage(), e.getConstraintViolations().toString());
         return super.handleExceptionInternal(
                 e,
                 body,

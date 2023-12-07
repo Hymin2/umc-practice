@@ -1,6 +1,6 @@
 package com.umc.project.review.dto;
 
-import com.umc.project.user.validation.annotation.ExistUser;
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,5 +13,16 @@ public class ReviewResponseDTO {
     @NoArgsConstructor
     public static class ReviewCreateDTO{
         private Long reviewId;
+    }
+
+    @Getter
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class MyReviewDTO{
+        private String ownerNickname;
+        private Double starPoint;
+        private String content;
+        private Date createdAt;
     }
 }
