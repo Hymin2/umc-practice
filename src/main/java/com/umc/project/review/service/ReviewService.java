@@ -1,5 +1,6 @@
 package com.umc.project.review.service;
 
+import com.umc.project.global.page.CustomPageRequest;
 import com.umc.project.global.page.dto.PageDTO;
 import com.umc.project.restaurant.entity.Restaurant;
 import com.umc.project.restaurant.service.RestaurantService;
@@ -14,7 +15,7 @@ import com.umc.project.user.service.UserService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -38,8 +39,9 @@ public class ReviewService {
         return ReviewMapper.toReviewCreateDTO(review);
     }
 
-    public PageDTO<MyReviewDTO> myReview(Long userId, Integer page){
-        Page<Review> review = reviewRepository.findAllByUserId(userId, PageRequest.of(page, 10));
+    @Transactional
+    public PageDTO<MyReviewDTO> myReview(Long userId, Pageable page){
+        Page<Review> review = reviewRepository.findAllByUserId(userId, CustomPageRequest.of(page));
 
         return ReviewMapper.toMyReviewPageDTO(review);
     }
