@@ -1,5 +1,6 @@
 package com.umc.project.mission.service;
 
+import com.umc.project.global.page.CustomPageRequest;
 import com.umc.project.global.page.dto.PageDTO;
 import com.umc.project.global.payload.code.status.ErrorStatus;
 import com.umc.project.mission.dto.MissionRequestDTO;
@@ -17,7 +18,7 @@ import com.umc.project.user.service.UserService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -56,8 +57,15 @@ public class MissionService {
     }
 
     @Transactional
-    public PageDTO<MissionResponseDTO.RestaurantMissionDTO> restaurantMissions(Long restaurantId, Integer page){
-        Page<Mission> missionPage = missionRepository.findAllByRestaurantId(restaurantId, PageRequest.of(page, 10));
+    public PageDTO<MissionResponseDTO.MyMissionDTO> getMyMissions(Long userId, String status, Pageable page){
+        Page<Mission> missionPage = missionRepository.findAllByUserIdAndStatus(userId, status, CustomPageRequest.of(page));
+
+        return MissionMapper.toMyMissionPageDTO(missionPage);
+    }
+
+    @Transactional
+    public PageDTO<MissionResponseDTO.RestaurantMissionDTO> getRestaurantMissions(Long restaurantId, Pageable page){
+        Page<Mission> missionPage = missionRepository.findAllByRestaurantId(restaurantId, CustomPageRequest.of(page));
 
         return MissionMapper.toRestaurantMissionPageDTO(missionPage);
     }
