@@ -3,11 +3,10 @@ package com.umc.project.mission.mapper;
 import com.umc.project.global.page.dto.PageDTO;
 import com.umc.project.mission.dto.MissionRequestDTO;
 import com.umc.project.mission.dto.MissionResponseDTO;
+import com.umc.project.mission.dto.MissionResponseDTO.MyMissionDTO;
 import com.umc.project.mission.dto.MissionResponseDTO.RestaurantMissionDTO;
 import com.umc.project.mission.entity.Mission;
 import com.umc.project.mission.entity.UserMission;
-
-import com.umc.project.restaurant.entity.Restaurant;
 import java.util.List;
 import java.util.UUID;
 import org.springframework.data.domain.Page;
@@ -55,6 +54,25 @@ public class MissionMapper {
         List<RestaurantMissionDTO> restaurantMissions = missionPage
                 .stream()
                 .map(MissionMapper::toRestaurantMissionDTO)
+                .toList();
+
+        return PageDTO.of(missionPage, restaurantMissions);
+    }
+
+    public static MissionResponseDTO.MyMissionDTO toMyMissionDTO(Mission mission){
+        return MissionResponseDTO.MyMissionDTO.builder()
+                .restaurantId(mission.getRestaurant().getId())
+                .restaurantName(mission.getRestaurant().getName())
+                .name(mission.getName())
+                .content(mission.getContent())
+                .point(mission.getPoint())
+                .build();
+    }
+
+    public static PageDTO<MissionResponseDTO.MyMissionDTO> toMyMissionPageDTO(Page<Mission> missionPage){
+        List<MyMissionDTO> restaurantMissions = missionPage
+                .stream()
+                .map(MissionMapper::toMyMissionDTO)
                 .toList();
 
         return PageDTO.of(missionPage, restaurantMissions);
