@@ -111,7 +111,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     private ResponseEntity<Object> handleExceptionInternalConstraint(ConstraintViolationException e, ErrorStatus errorCommonStatus,
                                                                      HttpHeaders headers, WebRequest request) {
-        ApiResponse<Object> body = ApiResponse.onFailure(errorCommonStatus.getCode(), errorCommonStatus.getMessage(), e.getConstraintViolations().toString());
+        String errorMessage = e.getMessage().split(": ")[1];
+
+        ApiResponse<Object> body = ApiResponse.onFailure(errorCommonStatus.getCode(), errorCommonStatus.getMessage(), errorMessage);
         return super.handleExceptionInternal(
                 e,
                 body,
