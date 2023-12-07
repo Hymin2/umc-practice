@@ -20,7 +20,7 @@ public class PageDTO<T> {
     Boolean isFirst;
     Boolean isLast;
 
-    public static <T> PageDTO<T> of(Page page, List<T> results){
+    public static <T> PageDTO<T> of(Page<? extends Object> page, List<T> results){
         return PageDTO.<T>builder()
                 .isFirst(page.isFirst())
                 .isLast(page.isLast())
