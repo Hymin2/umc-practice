@@ -24,7 +24,7 @@ public class ReviewMapper {
 
     public static ReviewResponseDTO.MyReviewDTO toMyReviewDTO(Review review){
         return MyReviewDTO.builder()
-                .ownerNickname(review.getUser().getName())
+                .restaurantName(review.getRestaurant().getName())
                 .createdAt(review.getCreatedTime())
                 .starPoint(review.getStartPoint())
                 .content(review.getContent())

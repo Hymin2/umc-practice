@@ -20,7 +20,7 @@ public class ReviewResponseDTO {
     @AllArgsConstructor
     @NoArgsConstructor
     public static class MyReviewDTO{
-        private String ownerNickname;
+        private String restaurantName;
         private Double starPoint;
         private String content;
         private Date createdAt;
