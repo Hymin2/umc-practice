@@ -4,7 +4,6 @@ import com.umc.project.global.exception.GeneralException;
 import com.umc.project.global.payload.ApiResponse;
 import com.umc.project.global.payload.code.status.ErrorStatus;
 import com.umc.project.temp.dto.TempResponse;
-import com.umc.project.temp.exception.TempException;
 import com.umc.project.temp.mapper.TempMapper;
 import com.umc.project.temp.service.TempService;
 import lombok.RequiredArgsConstructor;

@@ -7,8 +7,6 @@ import com.umc.project.restaurant.entity.Restaurant;
 import com.umc.project.restaurant.exception.RestaurantException;
 import com.umc.project.restaurant.mapper.RestaurantMapper;
 import com.umc.project.restaurant.repository.RestaurantRepository;
-import java.util.Optional;
-
 import com.umc.project.user.entity.Address;
 import com.umc.project.user.entity.User;
 import com.umc.project.user.service.AddressService;

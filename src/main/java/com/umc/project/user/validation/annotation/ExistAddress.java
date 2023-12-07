@@ -1,11 +1,13 @@
 package com.umc.project.user.validation.annotation;
 
 import com.umc.project.user.validation.validator.AddressExistValidator;
-import com.umc.project.user.validation.validator.UserExistValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
-
-import java.lang.annotation.*;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 @Documented
 @Constraint(validatedBy = AddressExistValidator.class)

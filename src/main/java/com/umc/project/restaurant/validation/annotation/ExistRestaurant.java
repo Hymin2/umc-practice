@@ -1,7 +1,6 @@
 package com.umc.project.restaurant.validation.annotation;
 
 import com.umc.project.restaurant.validation.validator.RestaurantExistValidator;
-import com.umc.project.user.validation.validator.UserExistValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 import java.lang.annotation.Documented;
